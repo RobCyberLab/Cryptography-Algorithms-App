@@ -1,71 +1,55 @@
 # 🔒 Cryptography-Algorithms-App
 
 ## 📘 Introduction
-The Cryptography-Algorithms-App is a simple web application designed to encrypt and decrypt text using popular cryptography algorithms, including AES (Advanced Encryption Standard) and RSA (Rivest–Shamir–Adleman). This app allows users to securely encode and decode messages, providing a straightforward and interactive interface for testing cryptographic algorithms. It is designed to be lightweight, secure, and easy to use.
+The **Cryptography-Algorithm-App** is a web-based tool that allows users to encrypt and decrypt text using different cryptographic algorithms, including **AES** (Advanced Encryption Standard) and **RSA** (Rivest-Shamir-Adleman). This app features a secure backend built with **Node.js** and **Express.js**, handling cryptographic operations, and a clean user interface powered by **HTML**, **CSS**, and **JavaScript**.
+
+Users can choose between AES and RSA algorithms for encryption and decryption, and the app securely handles text input and outputs encrypted or decrypted data.
 
 ## ⚙️ Technical Description
-This app is built using a full-stack architecture, consisting of a frontend with HTML, CSS, and JavaScript, and a backend powered by Node.js and Express. The backend handles encryption and decryption operations for AES and RSA using the Node.js `crypto` module and custom implementations for RSA encryption.
+The app is composed of the following components:
 
-- **Frontend**: Provides a clean interface where users can input text for encryption or decryption and choose the desired encryption method (AES or RSA). The frontend communicates with the backend via POST requests to encrypt or decrypt text and displays the result.
-  
-- **Backend**: An Express.js server handles incoming requests, processes the text using the selected encryption method (AES or RSA), and returns the encrypted or decrypted result to the user.
+### Backend:
+- **Express.js**: The app uses Express.js to set up a RESTful API that handles user requests for encryption and decryption. The server processes POST requests to encrypt and decrypt text based on the chosen algorithm (AES or RSA).
+- **Crypto Module**: Node's built-in `crypto` module is used for AES encryption and decryption operations.
+- **RSA Encryption**: The app uses the **NodeRSA** library to handle RSA encryption and decryption with secure padding schemes.
+- **Security Features**:
+  - **Helmet.js**: Helmet is applied as middleware to enhance the app's security by adding headers that protect it from common web vulnerabilities. For example, it includes a content security policy to control what resources can be loaded in the frontend.
+  - **Rate Limiting**: The app limits the number of requests from a single IP address using the **express-rate-limit** library to prevent abuse.
+  - **CORS (Cross-Origin Resource Sharing)**: CORS headers are configured to control which domains are allowed to interact with the API.
 
-The app ensures secure communication between the client and server using secure HTTP headers, rate limiting, and input validation.
+### Frontend:
+- **HTML/CSS**: The user interface is created using HTML and styled with CSS to provide a simple and responsive layout. The app allows users to input text, select the encryption method, and view the results.
+- **JavaScript**: Handles user interactions and communicates with the backend via **fetch** API for encryption and decryption operations. It displays the results on the UI and handles error messages.
 
 ## 💻 Technologies Used
-- **Frontend**:
-  - HTML5
-  - CSS3 (with custom variables for styling)
-  - JavaScript (for form handling and making asynchronous requests to the backend)
-  
-- **Backend**:
-  - Node.js
-  - Express.js
-  - Crypto (Node.js native library for AES encryption)
-  
-- **Security**:
-  - Helmet.js (for enhanced HTTP security headers)
-  - Rate Limiting (to prevent brute force attacks)
-  - CORS (Cross-Origin Resource Sharing) to manage allowed origins for secure API requests
-  
-- **Development Tools**:
-  - Visual Studio Code
-  - Postman (for testing API endpoints)
-  
+- **Node.js**: For backend development.
+- **Express.js**: A web framework for setting up the backend API.
+- **Crypto Module**: Node.js's built-in module for cryptography.
+- **NodeRSA**: For RSA encryption and decryption.
+- **Helmet.js**: For adding security headers to HTTP responses.
+- **express-rate-limit**: To limit the number of requests from a client.
+- **CORS**: To manage cross-origin requests.
+- **HTML/CSS/JavaScript**: For frontend development.
+- **dotenv**: For loading environment variables.
+
 ## 🌟 Main Features
-- **AES and RSA Encryption**: Supports encryption and decryption of text using AES and RSA cryptographic algorithms.
-- **Input Validation**: Ensures only valid text and encryption methods are accepted by the app.
-- **Secure Communication**: All encryption and decryption tasks are handled on the server-side, ensuring that sensitive information is not exposed in the client-side code.
-- **User-Friendly Interface**: A simple form-based interface that makes it easy to select encryption methods, input text, and view results.
-- **Error Handling**: Provides clear error messages if encryption or decryption fails.
-- **Responsive Design**: The application is optimized for different screen sizes, providing a smooth experience across devices.
+- **AES Encryption/Decryption**: Secure encryption and decryption using AES-256-GCM.
+- **RSA Encryption/Decryption**: Secure encryption and decryption using RSA with PKCS1-OAEP padding.
+- **Rate Limiting**: Protects against brute-force attacks by limiting requests from the same IP address.
+- **Content Security**: The app uses Helmet.js to secure HTTP headers, protecting against vulnerabilities.
+- **Cross-Origin Resource Sharing (CORS)**: Configured to ensure secure API access.
 
 ## 🔍 Use Cases
-- **Cryptography Testing**: Ideal for educational purposes and cryptography enthusiasts who want to test AES and RSA encryption methods in real-world scenarios.
-- **Security Audits**: Useful for security professionals who need to test the strength and weaknesses of different cryptographic methods.
-- **Secure Communication**: Allows individuals or organizations to test encrypting sensitive messages to ensure data confidentiality.
-- **Learning Cryptography**: A great tool for beginners who want to understand the practical implementation of cryptographic algorithms.
+- **Encrypting Text**: Users can encrypt plain text with AES or RSA encryption for secure transmission.
+- **Decrypting Text**: Encrypted text can be decrypted using either AES or RSA, as long as the correct algorithm and key are provided.
+- **Secure Communication**: Ideal for situations requiring secure data exchange, where sensitive information needs to be encrypted before transmission.
 
 ## 📝 Results and Insights
-- **AES**: AES is a symmetric encryption algorithm that is widely used in real-world applications. The app demonstrates how to encrypt and decrypt text using AES with the help of the Node.js `crypto` module. AES provides fast encryption and is highly secure when used with strong keys.
-  
-- **RSA**: RSA is an asymmetric encryption algorithm commonly used for secure data transmission. The app demonstrates how RSA keys are generated and how they are used for both encryption and decryption, making it an excellent tool for learning about public and private keys in asymmetric cryptography.
-  
-- The app's backend ensures proper validation, security, and handling of large text inputs, while the frontend provides users with instant feedback on the encryption process.
+This app demonstrates basic cryptographic techniques like AES and RSA, and it’s designed with security best practices in mind. By using secure key management and strong encryption methods, users can ensure that sensitive data is protected. The app can be used as a reference or starting point for developing more complex encryption systems.
 
 ## 🚀 Possible Improvements
-- **Add Support for More Algorithms**: Introduce additional encryption algorithms such as DES (Data Encryption Standard) or ECC (Elliptic Curve Cryptography) to give users more options for encryption and decryption.
-  
-- **Implement Key Generation for RSA**: Currently, RSA requires predefined keys. A key generation feature could be added to allow users to generate their own RSA public and private keys within the app.
-  
-- **Enhance Security Features**: Add support for HTTPS to ensure secure communication over the network, and consider integrating JWT (JSON Web Tokens) for authentication if the app is expanded to include user accounts.
-  
-- **User Authentication**: For added security, implement user login and authentication so users can store their encryption keys and history securely.
-  
-- **Batch Processing**: Allow users to upload multiple files or larger datasets for encryption and decryption in batch mode.
-
-- **Performance Optimization**: The app can be optimized to handle larger inputs and complex encryption operations more efficiently, especially for RSA.
-
----
-
-Feel free to contribute to the project or submit issues if you encounter any bugs or have feature requests. Contributions are welcome!
+- **Support for more algorithms**: Adding more cryptographic algorithms like **Triple DES** or **ECC** (Elliptic Curve Cryptography) for a wider range of use cases.
+- **User Authentication**: Adding user authentication to prevent unauthorized access to encryption and decryption functionalities.
+- **Frontend Enhancements**: Implement a more interactive frontend with input validation, progress indicators, and user-friendly error handling.
+- **File Encryption**: Allow users to encrypt and decrypt files, not just text.
+- **Key Management**: Implement more robust key management features to securely store and handle encryption keys.
