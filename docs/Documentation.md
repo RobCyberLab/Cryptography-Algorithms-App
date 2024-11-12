@@ -28,13 +28,7 @@ cd cryptography-algorithms-app
 npm install
 ```
 
-4. Create a `.env` file in the root directory:
-```bash
-# Encryption key for AES. Must be 32 characters long.
-ENCRYPTION_KEY=12345678901234567890123456789012
-```
-
-5. Launch the application:
+4. Launch the application:
 ```bash
 node app.js
 ```
