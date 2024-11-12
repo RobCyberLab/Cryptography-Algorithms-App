@@ -20,7 +20,7 @@ git clone https://github.com/RobCyberLab/Cryptography-Algorithms-App.git
 
 2. Navigate to the project directory:
 ```bash
-cd cryptography-algorithms-app
+cd src
 ```
 
 3. Install dependencies:
