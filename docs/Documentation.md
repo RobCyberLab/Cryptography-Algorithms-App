@@ -1,84 +1,161 @@
-Cryptography Algorithm App Documentation
-Table of Contents
-Project Overview
-Installation
-Usage
-Supported Algorithms
-Examples
-Project Overview 📝
-The Cryptography Algorithm App is a web-based tool that allows users to encrypt and decrypt messages using various cryptographic algorithms. The app supports multiple encryption methods, including AES, DES, and RSA, providing a hands-on experience for learning and testing these algorithms. Users can easily select their desired encryption or decryption method and input text to see the result instantly.
+# Cryptography Algorithms App Documentation
 
-Installation ⚙️
-To install and run the Cryptography Algorithm App locally, follow these steps:
+## Table of Contents
+1. [Project Overview](#project-overview-)
+2. [Installation](#installation-)
+3. [Usage](#usage-)
+4. [Encryption Algorithms](#encryption-algorithms-)
+5. [Examples](#examples-)
 
-Clone the project repository:
+## Project Overview 📝
+The Cryptography Algorithms App is a web-based application that enables users to encrypt and decrypt messages using industry-standard encryption algorithms. The application provides two powerful encryption methods: AES (Advanced Encryption Standard) for symmetric encryption and RSA (Rivest-Shamir-Adleman) for asymmetric encryption. Built with a focus on security and user experience, it offers a simple interface for protecting sensitive information.
 
-bash
-Copiază codul
-git clone https://github.com/RobCyberLab/Cryptography-Algorithm-App.git
-Navigate to the project directory:
+## Installation ⚙️
+To install and run the Cryptography Algorithms App locally, follow these steps:
 
-bash
-Copiază codul
-cd Cryptography-Algorithm-App
-Install the required dependencies using npm:
+1. Clone the project repository:
+```bash
+git clone [your-repository-url]
+```
 
-bash
-Copiază codul
+2. Navigate to the project directory:
+```bash
+cd cryptography-algorithms-app
+```
+
+3. Install dependencies:
+```bash
 npm install
-Start the server:
+```
 
-bash
-Copiază codul
-npm start
-Open the app in your web browser by navigating to http://localhost:3000.
+4. Create a `.env` file in the root directory:
+```bash
+# Encryption key for AES. Must be 32 characters long.
+ENCRYPTION_KEY=12345678901234567890123456789012
+```
 
-Usage 📖
-Open the Cryptography Algorithm App in your web browser.
-Choose between the "Encrypt" or "Decrypt" tab.
-Select the encryption or decryption method from the dropdown (AES, DES, or RSA).
-Enter the text you want to encrypt or decrypt in the input text area.
-Click the "Encrypt" or "Decrypt" button to perform the operation.
-The result will appear below the input field in the output section.
-To copy the output, click the "Copy" button next to the result.
-Supported Algorithms 🔐
-AES (Advanced Encryption Standard)
-AES is a symmetric encryption algorithm that operates on fixed block sizes (128 bits) and supports key sizes of 128, 192, or 256 bits. It is widely used in modern cryptographic applications and is known for its efficiency and security.
+5. Launch the application:
+```bash
+node app.js
+```
 
-DES (Data Encryption Standard)
-DES is a symmetric-key block cipher that encrypts data in 64-bit blocks using a 56-bit key. While it was once a widely used encryption standard, it is now considered insecure due to advances in computing power and the relatively small key size.
+The server will start running on the default port (3000) or the port specified in your environment.
 
-RSA (Rivest-Shamir-Adleman)
-RSA is an asymmetric encryption algorithm used for secure data transmission. It uses a pair of keys: a public key for encryption and a private key for decryption. RSA is widely used in various applications, including digital signatures and secure email communication.
+## Usage 📖
+1. Access the application through your web browser at `http://localhost:3000`
+2. The interface presents two main sections:
+   - **Encryption Form**
+     - Enter the text you want to encrypt
+     - Select encryption method (AES or RSA)
+     - Click "Encrypt" button
+   - **Decryption Form**
+     - Enter the encrypted text
+     - Select the same method used for encryption
+     - Click "Decrypt" button
 
-Examples 📌
-AES Encryption: Encrypting the text "hello world" with a 256-bit key results in a secure ciphertext.
+3. The application will display either:
+   - The encrypted/decrypted result in the output area
+   - Any error messages in the error output area
 
-Encrypted Text: abf9d7fba3a4d86ed7db7a869eaf54ed
+## Encryption Algorithms 🔐
 
-<p align="center"> <img src="aes-encryption-example.png" alt="AES Encryption Example" width="500"> <br> <em>Example 1: AES Encryption of 'hello world'</em> </p>
-AES Decryption: Decrypting the above AES ciphertext with the corresponding key retrieves the original message "hello world".
+### AES Implementation
+The application uses AES-256-GCM (Galois/Counter Mode) with the following security features:
 
-Decrypted Text: hello world
+```javascript
+// Key Security
+- 32-byte encryption key
+- Unique salt for each encryption
+- PBKDF2 key derivation (100,000 iterations)
 
-<p align="center"> <img src="aes-decryption-example.png" alt="AES Decryption Example" width="500"> <br> <em>Example 2: AES Decryption of encrypted text</em> </p>
-RSA Encryption: Encrypting the text "secure data" using a public key in RSA results in an encrypted ciphertext that can only be decrypted with the corresponding private key.
+// Encryption Process
+- Random 16-byte Initialization Vector (IV)
+- GCM authentication tag
+- Base64 encoding for output
 
-Encrypted Text: `MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7h1rtgT7Kl/Tlgqww1jVtDFf5E9S6dY3mlz9K1wGFJTIYc4CUyFozZaQhAGuKYjqcwAKOXVo5KOvZTgsY8Rml3x3rZZVe6swJ9FGHLLJzB53mjgWbtsdgl+rwmFq4q0q8cHKHkRrZsmLf3ugNNXq7qM9d5X0p5dXVe..."
+// Full encryption result includes:
+{
+    "encrypted": "base64_encoded_data",
+    "iv": "base64_encoded_iv",
+    "salt": "base64_encoded_salt",
+    "authTag": "base64_encoded_tag"
+}
+```
 
-<p align="center"> <img src="rsa-encryption-example.png" alt="RSA Encryption Example" width="500"> <br> <em>Example 3: RSA Encryption of 'secure data'</em> </p>
-RSA Decryption: Decrypting the above RSA ciphertext with the private key retrieves the original message "secure data".
+### RSA Implementation
+Uses RSA encryption with these characteristics:
 
-Decrypted Text: secure data
+```javascript
+// Key Generation
+- 2048-bit key size
+- PKCS1-OAEP padding scheme
 
-<p align="center"> <img src="rsa-decryption-example.png" alt="RSA Decryption Example" width="500"> <br> <em>Example 4: RSA Decryption of encrypted text</em> </p>
-DES Encryption: Encrypting "confidential" using the DES algorithm with a 56-bit key results in a ciphertext that appears as a random string.
+// Output Format
+- Base64 encoded encrypted data
+- Single string output
+```
 
-Encrypted Text: 4c4d2f8f8b08442ff2fa1fd8b07c72a7
+## Examples 📌
 
-<p align="center"> <img src="des-encryption-example.png" alt="DES Encryption Example" width="500"> <br> <em>Example 5: DES Encryption of 'confidential'</em> </p>
-DES Decryption: Decrypting the DES ciphertext with the corresponding key retrieves the original message "confidential".
+### Example 1: AES Encryption
+Input:
+```
+Hello World
+```
 
-Decrypted Text: confidential
+Output:
+```json
+{
+    "encrypted": "a1b2c3d4e5f6g7h8i9j0...",
+    "iv": "k9l8m7n6o5p4q3r2...",
+    "salt": "s2t3u4v5w6x7y8z9...",
+    "authTag": "a9b8c7d6e5f4g3h2..."
+}
+```
 
-<p align="center"> <img src="des-decryption-example.png" alt="DES Decryption Example" width="500"> <br> <em>Example 6: DES Decryption of encrypted text</em> </p>
+### Example 2: AES Decryption
+Input (paste the entire JSON object from encryption):
+```json
+{
+    "encrypted": "a1b2c3d4e5f6g7h8i9j0...",
+    "iv": "k9l8m7n6o5p4q3r2...",
+    "salt": "s2t3u4v5w6x7y8z9...",
+    "authTag": "a9b8c7d6e5f4g3h2..."
+}
+```
+
+Output:
+```
+Hello World
+```
+
+### Example 3: RSA Encryption
+Input:
+```
+Secret Message
+```
+
+Output:
+```
+MIIBIjANBgkqhkiG9w0BAQEFAAOC...
+```
+
+### Example 4: RSA Decryption
+Input:
+```
+MIIBIjANBgkqhkiG9w0BAQEFAAOC...
+```
+
+Output:
+```
+Secret Message
+```
+
+Note: The application includes several security measures:
+- Maximum input length: 10,000 characters
+- Rate limiting: 100 requests per 15 minutes
+- Request size limit: 10KB
+- Secure HTTP headers
+- Input validation for both encryption methods
+
+These security features help protect against common vulnerabilities while ensuring reliable encryption and decryption operations.
