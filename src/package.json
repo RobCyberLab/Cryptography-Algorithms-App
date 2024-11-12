@@ -1,0 +1,25 @@
+{
+  "name": "text-encryption-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "blowfish": "^1.0.1",
+    "body-parser": "^1.20.3",
+    "compression": "^1.7.4",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "egoroof-blowfish": "^2.2.2",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "node-rsa": "^1.1.1"
+  },
+  "description": ""
+}

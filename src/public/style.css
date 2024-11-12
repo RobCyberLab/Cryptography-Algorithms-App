@@ -1,0 +1,100 @@
+:root {
+    /* Custom color variables for easy theming */
+    --primary-color: #1a913d; /* Primary button color */
+    --hover-color: #0bd40e; /* Button color on hover */
+    --background-color: #f4f4f4; /* Background color of the body */
+    --error-color: #D95D02; /* Text color for error messages */
+    --success-background: #f8f9fa; /* Background color for success output */
+    --error-background: #fff3ef; /* Background color for error output */
+}
+
+body {
+    font-family: Arial, sans-serif; /* Sets the font for the entire page */
+    background-color: var(--background-color); /* Uses background color variable */
+    margin: 0; /* Removes default margin */
+    padding: 20px; /* Adds padding to the body */
+}
+
+.container {
+    max-width: 800px; /* Restricts container width */
+    margin: 0 auto; /* Centers the container */
+}
+
+h1, h2 {
+    color: #333; /* Dark gray color for headings */
+    text-align: center; /* Centers the headings */
+    margin-bottom: 20px; /* Adds space below headings */
+}
+
+form {
+    background: #fff; /* White background for forms */
+    padding: 20px; /* Space within the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 30px; /* Space below form */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px; /* Space below labels */
+    color: #666; /* Dark gray label color */
+}
+
+textarea, select {
+    width: 100%; /* Full width for form fields */
+    padding: 10px; /* Padding within fields */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Ensures padding doesn’t affect width */
+}
+
+textarea {
+    min-height: 100px; /* Minimum height for textarea */
+    resize: vertical; /* Allows vertical resizing only */
+}
+
+button {
+    background-color: var(--primary-color); /* Uses primary color variable */
+    color: white; /* White text color */
+    border: none; /* Removes border */
+    border-radius: 4px; /* Rounded button corners */
+    padding: 12px; /* Adds padding inside button */
+    width: 100%; /* Full width button */
+    cursor: pointer; /* Shows pointer on hover */
+    font-size: 16px; /* Font size for button text */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+button:hover {
+    background-color: var(--hover-color); /* Changes color on hover */
+}
+
+.output-container {
+    margin-top: 15px; /* Space above output container */
+}
+
+.output, .error-output {
+    padding: 10px; /* Padding inside output containers */
+    border-radius: 4px; /* Rounded output box */
+    margin-top: 10px; /* Space above output */
+    word-break: break-all; /* Wraps long text */
+    display: none; /* Initially hidden */
+    transition: all 0.3s ease; /* Smooth show/hide transition */
+}
+
+.output.show {
+    display: block; /* Displays output when 'show' class is added */
+    background-color: var(--success-background); /* Success output background */
+    border: 1px solid #ddd; /* Light border for output */
+}
+
+.error-output.show {
+    display: block; /* Displays error output when 'show' class is added */
+    background-color: var(--error-background); /* Error output background */
+    border: 1px solid #ffcdb2; /* Light border for error output */
+    color: var(--error-color); /* Error text color */
+}

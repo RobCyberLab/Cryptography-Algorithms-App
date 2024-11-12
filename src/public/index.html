@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Specifies the character encoding for the HTML document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport for responsive design -->
+    <title>Text Encryption</title> <!-- Title displayed in the browser tab -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file for styling -->
+</head>
+<body>
+    <div class="container"> <!-- Main container for content alignment and styling -->
+        <h1>Text Encryption/Decryption</h1> <!-- Main heading for the page -->
+
+        <!-- Encryption Form -->
+        <form id="encryptionForm"> <!-- Form for handling text encryption -->
+            <h2>Encrypt</h2> <!-- Subheading for encryption section -->
+            <div class="form-group">
+                <label for="text">Text:</label> <!-- Label for the text input field -->
+                <textarea id="text" required></textarea> <!-- Textarea for inputting text to encrypt -->
+            </div>
+            <div class="form-group">
+                <label for="method">Method:</label> <!-- Label for the encryption method selection -->
+                <select id="method" required> <!-- Dropdown to select encryption method -->
+                    <option value="AES">AES</option> <!-- AES option for symmetric encryption -->
+                    <option value="RSA">RSA</option> <!-- RSA option for asymmetric encryption -->
+                </select>
+            </div>
+            <button type="submit">Encrypt</button> <!-- Button to submit the form for encryption -->
+
+            <div class="output-container">
+                <div id="encryptionOutput" class="output"></div> <!-- Div to display the encryption output -->
+                <div id="encryptionErrorOutput" class="error-output"></div> <!-- Div to display any error messages for encryption -->
+            </div>
+        </form>
+
+        <!-- Decryption Form -->
+        <form id="decryptionForm"> <!-- Form for handling text decryption -->
+            <h2>Decrypt</h2> <!-- Subheading for decryption section -->
+            <div class="form-group">
+                <label for="decryptText">Text:</label> <!-- Label for the encrypted text input field -->
+                <textarea id="decryptText" required></textarea> <!-- Textarea for inputting text to decrypt -->
+            </div>
+            <div class="form-group">
+                <label for="decryptMethod">Method:</label> <!-- Label for the decryption method selection -->
+                <select id="decryptMethod" required> <!-- Dropdown to select decryption method -->
+                    <option value="AES">AES</option> <!-- AES option for decryption -->
+                    <option value="RSA">RSA</option> <!-- RSA option for decryption -->
+                </select>
+            </div>
+            <button type="submit">Decrypt</button> <!-- Button to submit the form for decryption -->
+
+            <div class="output-container">
+                <div id="decryptionOutput" class="output"></div> <!-- Div to display the decryption output -->
+                <div id="decryptionErrorOutput" class="error-output"></div> <!-- Div to display any error messages for decryption -->
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script> <!-- Link to JavaScript file for handling encryption and decryption logic -->
+</body>
+</html>
