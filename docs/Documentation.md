@@ -15,7 +15,7 @@ To install and run the Cryptography Algorithms App locally, follow these steps:
 
 1. Clone the project repository:
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/RobCyberLab/Cryptography-Algorithms-App.git
 ```
 
 2. Navigate to the project directory:
