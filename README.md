@@ -25,9 +25,6 @@ The app is built using **Node.js** and **Express.js** for backend functionality,
 - **Express.js**: To set up and handle HTTP requests and responses.
 - **Crypto Module**: Built-in Node.js module used for AES encryption and decryption.
 - **NodeRSA**: A library used for RSA encryption and decryption.
-- **Helmet.js**: Middleware for securing HTTP headers and enhancing application security.
-- **express-rate-limit**: For rate limiting to protect against excessive API requests.
-- **CORS**: Configured to manage cross-origin resource sharing.
 - **HTML5**: For structuring the user interface.
 - **CSS3**: For styling and responsive design.
 - **JavaScript**: To implement logic for encryption, decryption, and dynamic UI updates.
