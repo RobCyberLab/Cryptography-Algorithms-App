@@ -2,7 +2,7 @@
 
 ## Table of Contents
 1. [Introduction](#introduction-)
-2. [Technical Description](#technical-description-%EF%B8%8F)
+2. [Technical Description](#technical-description-)
 3. [Technologies Used](#technologies-used-)
 4. [Architecture](#architecture-)
 5. [Security Features](#security-features-)
@@ -19,77 +19,124 @@ The Cryptography Algorithms App is a secure web application that provides robust
 The application implements two primary encryption methods:
 
 ### AES (Advanced Encryption Standard)
-- Uses AES-256-GCM for authenticated encryption
-- Implements secure key derivation using PBKDF2
-- Includes salt and IV generation for enhanced security
-- Provides authentication tags to verify data integrity
+```javascript
+// Generate random IV and salt
+const iv = crypto.randomBytes(this.IV_LENGTH);
+const salt = crypto.randomBytes(this.SALT_LENGTH);
+
+// Derive key using PBKDF2
+const key = await crypto.pbkdf2(
+    this.ENCRYPTION_KEY,
+    salt,
+    100000,
+    32,
+    'sha256'
+);
+
+// Create cipher and encrypt
+const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
+const encrypted = Buffer.concat([
+    cipher.update(text, 'utf8'),
+    cipher.final()
+]);
+const authTag = cipher.getAuthTag();
+```
 
 ### RSA (Rivest-Shamir-Adleman)
-- Uses 2048-bit key size for strong security
-- Implements PKCS1-OAEP padding scheme
-- Provides public key encryption for secure data transfer
-- Supports asymmetric encryption capabilities
+```javascript
+// Initialize RSA with 2048-bit key size
+this.rsaKey = new NodeRSA({ b: 2048 });
+
+// Encrypt using PKCS1-OAEP padding scheme
+const encrypted = this.rsaKey.encrypt(text, 'base64', 'utf8', {
+    encryptionScheme: 'pkcs1-oaep'
+});
+```
 
 ## Technologies Used 💻
 - **Frontend**:
-  - HTML5: Semantic structure and form handling
-  - CSS3: Modern styling with CSS variables
-  - JavaScript: Async/await for API calls and DOM manipulation
+  - HTML5: Semantic structure with form handling for encryption inputs
+  - CSS3: Modern styling using CSS variables and responsive design
+  - JavaScript: Async/await pattern for API communication
 
 - **Backend**:
-  - Node.js: Server-side JavaScript runtime
-  - Express.js: Web application framework
-  - Crypto module: Native cryptographic functionality
+  - Node.js: Server-side JavaScript runtime for cryptographic operations
+  - Express.js: Web application framework handling HTTP requests
+  - Crypto module: Core Node.js cryptography functionality
   - Node-RSA: RSA encryption implementation
 
 - **Security Packages**:
-  - Helmet: HTTP header security
-  - Express Rate Limit: Request rate limiting
-  - Body Parser: Request body validation
+  - Helmet: Comprehensive HTTP header security
+  - Express Rate Limit: API request rate limiting
+  - Body Parser: Request payload validation
   - CORS: Cross-origin resource sharing protection
 
 ## Architecture 🏗
-- **Frontend Layer**: Single-page application with responsive design
-- **API Layer**: RESTful endpoints for encryption/decryption operations
-- **Service Layer**: Encryption service handling cryptographic operations
-- **Security Layer**: Multiple security middlewares and validations
+- **Frontend Layer**: 
+  - Single-page application
+  - Responsive form design
+  - Real-time validation feedback
+
+- **API Layer**: 
+  - `/encrypt` endpoint for encryption operations
+  - `/decrypt` endpoint for decryption operations
+  - Request validation middleware
+
+- **Service Layer**: 
+  - EncryptionService class handling cryptographic operations
+  - Key management and derivation
+  - Error handling and validation
+
+- **Security Layer**: 
+  - Input sanitization
+  - Rate limiting
+  - HTTP security headers
 
 ## Security Features 🛡
 1. **Input Validation**
-   - Text length limits
-   - Method validation
+   - Maximum text length: 10,000 characters
+   - Method validation (AES/RSA)
    - Content type verification
+   - Input sanitization
 
 2. **Rate Limiting**
    - 100 requests per IP per 15 minutes
-   - Protection against brute force attacks
+   - Brute force attack protection
 
 3. **HTTP Security Headers**
    - Content Security Policy
    - XSS Protection
    - Frame Options
-   - Other Helmet-provided security headers
+   - CORS configuration
 
 4. **Encryption Security**
-   - Secure key derivation
-   - Random IV generation
-   - Authentication tags
-   - Salt generation
+   - 32-byte encryption key
+   - Random IV generation (16 bytes)
+   - PBKDF2 key derivation
+   - GCM authentication tags
 
 ## Main Features 🌟
-- **Dual Encryption Methods**: Choose between AES and RSA encryption
-- **Real-time Feedback**: Instant error and success messages
-- **Secure Key Management**: Environmental variable-based key storage
-- **Data Validation**: Comprehensive input validation
-- **Responsive Design**: Mobile-friendly interface
-- **Error Handling**: Graceful error management and user feedback
+- **Encryption Methods**:
+  - AES-256-GCM encryption
+  - RSA 2048-bit encryption
+  - Method selection flexibility
+
+- **Security Features**:
+  - Secure key management
+  - Salt generation
+  - Authentication tags
+
+- **User Interface**:
+  - Clean form design
+  - Error feedback
+  - Responsive layout
 
 ## Use Cases 🔍
-- **Secure Communication**: Encrypt sensitive messages before transmission
-- **Data Protection**: Secure storage of sensitive information
-- **Key Exchange**: Use RSA for secure key exchange scenarios
-- **Educational Tool**: Demonstrate cryptographic concepts
-- **API Integration**: Secure data exchange between systems
+- **Secure Communication**: Protect sensitive messages
+- **Data Protection**: Secure information storage
+- **Key Exchange**: RSA-based secure key sharing
+- **Educational Purpose**: Cryptography demonstration
+- **API Integration**: Secure system communication
 
 ## Installation and Setup 🔧
 1. **Prerequisites**:
@@ -98,54 +145,61 @@ The application implements two primary encryption methods:
    npm package manager
    ```
 
-2. **Environment Setup**:
+2. **Installation Steps**:
    ```bash
-   ENCRYPTION_KEY=your_base64_encoded_32_byte_key
-   PORT=3000
-   ALLOWED_ORIGIN=your_frontend_origin
+   git clone https://github.com/RobCyberLab/Cryptography-Algorithms-App/src.git
+   cd src
+   npm install
    ```
 
-3. **Installation**:
+3. **Environment Setup**:
    ```bash
-   npm install
-   npm start
+   # Create .env file with 32-character encryption key
+   ENCRYPTION_KEY=12345678901234567890123456789012
+   ```
+
+4. **Start Application**:
+   ```bash
+   node app.js
    ```
 
 ## Results and Insights 📝
-The development of this cryptography application provided valuable insights into:
-- Implementation of secure cryptographic practices
-- Importance of proper key management
-- Balance between security and usability
-- Handling of edge cases in encryption/decryption
-- Implementation of proper error handling for cryptographic operations
+Implementation learnings:
+- Secure cryptographic practices importance
+- Key management strategies
+- Error handling significance
+- Input validation requirements
+- API security considerations
 
 ## Possible Improvements 🚀
 1. **Enhanced Security**:
-   - Add hardware security module (HSM) support
-   - Implement perfect forward secrecy
-   - Add key rotation mechanisms
-   - Implement secure key backup solutions
-
-2. **Additional Features**:
-   - Support for file encryption
+   - Key rotation mechanism
+   - Stronger key derivation
    - Additional encryption algorithms
-   - Digital signature support
-   - Key management interface
+   - Enhanced input validation
 
-3. **Performance Optimizations**:
-   - Implement caching mechanisms
-   - Add request queuing
-   - Optimize large data handling
-   - Implement worker threads for heavy operations
+2. **Feature Additions**:
+   - File encryption support
+   - Digital signatures
+   - Key management interface
+   - Batch processing
+
+3. **Performance**:
+   - Caching implementation
+   - Request queuing
+   - Worker threads
+   - Load balancing
 
 4. **User Experience**:
-   - Add progress indicators for long operations
-   - Implement batch processing
-   - Add encryption/decryption history
-   - Improve error message clarity
+   - Progress indicators
+   - Better error messages
+   - Operation history
+   - Mobile optimization
 
 5. **Infrastructure**:
-   - Add container support
-   - Implement CI/CD pipeline
-   - Add automated security testing
-   - Implement proper logging and monitoring
+   - Containerization
+   - CI/CD pipeline
+   - Automated testing
+   - Monitoring system
+
+The application successfully implements industry-standard encryption algorithms while maintaining security best practices and providing a user-friendly interface for cryptographic operations.
