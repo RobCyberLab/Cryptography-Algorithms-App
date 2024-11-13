@@ -1,43 +1,39 @@
 # Cryptography Algorithms App Documentation
 
 ## Table of Contents
-1. [Project Overview](#project-overview-)
-2. [Installation](#installation-)
-3. [Usage](#usage-)
-4. [Encryption Algorithms](#encryption-algorithms-)
-5. [Examples](#examples-)
+1. [Project Overview](#project-overview)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Encryption Algorithms](#encryption-algorithms)
+5. [Examples](#examples)
 
 ## Project Overview 📝
-The Cryptography Algorithms App is a web-based application that enables users to encrypt and decrypt messages using industry-standard encryption algorithms. The application provides two powerful encryption methods: AES (Advanced Encryption Standard) for symmetric encryption and RSA (Rivest-Shamir-Adleman) for asymmetric encryption. Built with a focus on security and user experience, it offers a simple interface for protecting sensitive information.
+The Cryptography Algorithms App is a web-based application that provides text encryption and decryption capabilities using two industry-standard encryption algorithms: AES (Advanced Encryption Standard) for symmetric encryption and RSA (Rivest-Shamir-Adleman) for asymmetric encryption. The application features a clean, user-friendly interface for secure text processing.
 
 ## Installation ⚙️
-To install and run the Cryptography Algorithms App locally, follow these steps:
+To install and run the Cryptography Algorithms App, follow these steps:
 
-1. Clone the project repository:
-```bash
-git clone https://github.com/RobCyberLab/Cryptography-Algorithms-App.git
-```
-
-2. Navigate to the project directory:
-```bash
-cd src
-```
-
-3. Install dependencies:
+1. Install the required dependencies:
 ```bash
 npm install
 ```
 
-4. Launch the application:
+2. Create a `.env` file in the project root with the following variables:
+```bash
+ENCRYPTION_KEY=your_32_byte_encryption_key
+PORT=3000
+```
+
+3. Launch the application:
 ```bash
 node app.js
 ```
 
-The server will start running on the default port (3000) or the port specified in your environment.
+The server will start running on port 3000 (default) or your specified port.
 
 ## Usage 📖
 1. Access the application through your web browser at `http://localhost:3000`
-2. The interface presents two main sections:
+2. The interface provides two main sections:
    - **Encryption Form**
      - Enter the text you want to encrypt
      - Select encryption method (AES or RSA)
@@ -47,133 +43,101 @@ The server will start running on the default port (3000) or the port specified i
      - Select the same method used for encryption
      - Click "Decrypt" button
 
-3. The application will display either:
-   - The encrypted/decrypted result in the output area
-   - Any error messages in the error output area
+3. The application will display:
+   - The encryption/decryption result in the output area
+   - Any error messages in a separate error output area
 
 ## Encryption Algorithms 🔐
 
 ### AES Implementation
-The application uses AES-256-GCM (Galois/Counter Mode) with the following security features:
+The application uses AES-256-CBC with the following features:
 
 #### Key Security
-- 32-byte encryption key
-- Unique salt for each encryption
-- PBKDF2 key derivation (100,000 iterations)
+- 32-byte encryption key (stored in environment variables)
+- 16-byte random salt for each encryption
+- PBKDF2 key derivation with:
+  - 100,000 iterations
+  - SHA-256 hash function
+  - 32-byte derived key length
 
 #### Encryption Process
-- Random 16-byte Initialization Vector (IV)
-- GCM authentication tag
-- Base64 encoding for output
-
 ```javascript
-// Full encryption result includes:
-{
-    "encrypted": "base64_encoded_data",
-    "iv": "base64_encoded_iv",
-    "salt": "base64_encoded_salt",
-    "authTag": "base64_encoded_tag"
-}
+// Format of encrypted output:
+saltHex:ivHex:encryptedText
+
+// Example:
+"a1b2c3....:d4e5f6....:g7h8i9...."
 ```
 
 ### RSA Implementation
-Uses RSA encryption with these characteristics:
+Uses RSA encryption with these specifications:
 
-#### Key Generation
+#### Key Features
 - 2048-bit key size
-- PKCS1-OAEP padding scheme
-
-#### Output Format
-- Base64 encoded encrypted data
-- Single string output
-
+- Generated on server start
+- Base64 encoded output
 
 ## Examples 📌
 
-### Example 1: AES Encryption
+### AES Encryption/Decryption
 Input:
 ```
 Hello World
 ```
 
-Output:
-```json
-{
-    "encrypted": "a1b2c3d4e5f6g7h8i9j0...",
-    "iv": "k9l8m7n6o5p4q3r2...",
-    "salt": "s2t3u4v5w6x7y8z9...",
-    "authTag": "a9b8c7d6e5f4g3h2..."
-}
+Encrypted Output (format):
+```
+<salt-hex>:<iv-hex>:<encrypted-hex>
 ```
 
-<p align="center">
-  <img src="example1-image.png" alt="Example 1: AES Encryption" width="500">
-  <br>
-  <em>Example 1: AES Encryption</em>
-</p>
-
-
-### Example 2: AES Decryption
-Input (paste the entire JSON object from encryption):
-```json
-{
-    "encrypted": "a1b2c3d4e5f6g7h8i9j0...",
-    "iv": "k9l8m7n6o5p4q3r2...",
-    "salt": "s2t3u4v5w6x7y8z9...",
-    "authTag": "a9b8c7d6e5f4g3h2..."
-}
-```
-
-Output:
+### RSA Encryption/Decryption
+Input:
 ```
 Hello World
 ```
 
-<p align="center">
-  <img src="example2-image.png" alt="Example 2: AES Decryption" width="500">
-  <br>
-  <em>Example 2: AES Decryption</em>
-</p>
-
-### Example 3: RSA Encryption
-Input:
+Encrypted Output:
 ```
-Secret Message
+Base64 encoded string
 ```
 
-Output:
-```
-MIIBIjANBgkqhkiG9w0BAQEFAAOC...
-```
+### Error Handling Examples
+The application handles various error scenarios:
 
-<p align="center">
-  <img src="example3-image.png" alt="Example 3: RSA Encryption" width="500">
-  <br>
-  <em>Example 3: RSA Encryption</em>
-</p>
-
-### Example 4: RSA Decryption
-Input:
-```
-MIIBIjANBgkqhkiG9w0BAQEFAAOC...
+1. Missing Input:
+```json
+{
+    "error": "Text is required."
+}
 ```
 
-Output:
+2. Invalid Encryption Method:
+```json
+{
+    "error": "Invalid encryption method."
+}
 ```
-Secret Message
+
+3. Invalid AES Format:
+```json
+{
+    "error": "AES decryption error: Invalid encrypted text format."
+}
 ```
 
-<p align="center">
-  <img src="example4-image.png" alt="Example 4: RSA Encryption" width="500">
-  <br>
-  <em>Example 4: RSA Encryption</em>
-</p>
+4. Invalid RSA Data:
+```json
+{
+    "error": "RSA decryption error: Invalid RSA encrypted text."
+}
+```
 
-Note: The application includes several security measures:
-- Maximum input length: 10,000 characters
-- Rate limiting: 100 requests per 15 minutes
-- Request size limit: 10KB
-- Secure HTTP headers
-- Input validation for both encryption methods
+Current Security Measures:
+- HTTP security headers via Helmet
+- Input validation
+- Secure key derivation
+- Random IV and salt generation
+- Error messages that don't expose internal details
+- Environment variable for sensitive data
 
-These security features help protect against common vulnerabilities while ensuring reliable encryption and decryption operations.
+Note: This documentation reflects the current implementation. Some features mentioned in the original documentation (like GCM mode, rate limiting, and request size limits) are not currently implemented in the codebase.
