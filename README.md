@@ -10,13 +10,12 @@
 7. [Future Enhancements](#future-enhancements-)
 
 ## Introduction 📘
-A web application providing encryption and decryption capabilities using AES and RSA algorithms. The app offers a simple user interface for text encryption while implementing several security best practices.
+A web application providing encryption and decryption capabilities using AES and RSA algorithms. The app offers a simple user interface for text encryption while maintaining essential security practices.
 
 ## Features 🌟
-
 ### Core Functionality ⚡
-- Symmetric encryption using AES-256-GCM
-- Asymmetric encryption using RSA (2048-bit)
+- Symmetric encryption using AES
+- Asymmetric encryption using RSA
 - Web interface for encryption/decryption operations
 - Real-time error feedback
 - Responsive design
@@ -50,10 +49,9 @@ const encrypted = this.rsaKey.encrypt(text, 'base64', 'utf8', {
 ```
 
 ## Technologies Used 💻
-
 ### Frontend 🎨
 - HTML5
-- CSS3 (with CSS variables for theming)
+- CSS3
 - JavaScript
 
 ### Backend ⚙️
@@ -63,48 +61,37 @@ const encrypted = this.rsaKey.encrypt(text, 'base64', 'utf8', {
 - node-rsa package
 
 ### Security Packages 🛡️
-- helmet
-- express-rate-limit
-- body-parser
-- cors
+- helmet (HTTP security headers)
+- body-parser (Request parsing)
 
 ## Security Measures 🔐
-- Request rate limiting (100 requests per 15 minutes)
 - HTTP security headers via Helmet
-- Content Security Policy configuration
-- Maximum request body size (10kb)
-- CORS protection
+- Request body parsing and validation
 - Input validation for encryption parameters
+- Error handling for invalid inputs
 
 ## Installation 🚀
-
-1. Clone the repository
+1. Install dependencies:
 ```bash
-git clone https://github.com/RobCyberLab/Cryptography-Algorithms-App.git
+npm install express body-parser helmet
 ```
 
-2. Install dependencies:
+2. Create a 'public' directory and move frontend files:
 ```bash
-npm install
+mkdir public
+mv index.html style.css script.js public/
 ```
 
-3. Create a `.env` file:
-```bash
-ENCRYPTION_KEY=[32-byte-key]
-PORT=3000
-```
-
-4. Start the server:
+3. Start the server:
 ```bash
 node app.js
 ```
-After starting the server, open `http://localhost:3000` in your browser to access the encryption interface.
 
+The application will be available at `http://localhost:3000`
 
 ## API Documentation 📚
-
 ### Encrypt Endpoint 🔒
-```
+```http
 POST /encrypt
 Content-Type: application/json
 
@@ -115,7 +102,7 @@ Content-Type: application/json
 ```
 
 ### Decrypt Endpoint 🔓
-```
+```http
 POST /decrypt
 Content-Type: application/json
 
@@ -125,13 +112,27 @@ Content-Type: application/json
 }
 ```
 
-## Future Enhancements 🚀
+### Error Responses
+```json
+{
+    "error": "Error message"
+}
+```
+Status: 400 Bad Request
 
+Common error messages:
+- "Text is required."
+- "Invalid encryption method."
+- "Invalid decryption method."
+
+## Future Enhancements 🚀
 ### Planned Security Features 🛡️
 - Enhanced input sanitization
 - Key rotation mechanism
 - Digital signatures
 - Advanced key management
+- Rate limiting
+- CORS protection
 
 ### Planned Functionality 💫
 - File encryption support
