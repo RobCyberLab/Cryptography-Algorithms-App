@@ -54,7 +54,7 @@ const encrypted = this.rsaKey.encrypt(text, 'base64', 'utf8', {
 ### Frontend 🎨
 - HTML5
 - CSS3 (with CSS variables for theming)
-- Vanilla JavaScript with async/await
+- JavaScript
 
 ### Backend ⚙️
 - Node.js
