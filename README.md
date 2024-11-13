@@ -79,6 +79,10 @@ const encrypted = this.rsaKey.encrypt(text, 'base64', 'utf8', {
 ## Installation 🚀
 
 1. Clone the repository
+```bash
+git clone https://github.com/RobCyberLab/Cryptography-Algorithms-App.git
+```
+
 2. Install dependencies:
 ```bash
 npm install
@@ -87,7 +91,7 @@ npm install
 3. Create a `.env` file:
 ```bash
 ENCRYPTION_KEY=[32-byte-key]
-PORT=3000 # Optional
+PORT=3000
 ```
 
 4. Start the server:
