@@ -81,6 +81,12 @@ Encrypted Output (format):
 <salt-hex>:<iv-hex>:<encrypted-hex>
 ```
 
+<p align="center">
+  <img src="example1-image.png" alt="Example 1: AES Encryption/Decryption" width="500">
+  <br>
+  <em>Example 1: AES Encryption/Decryption</em>
+</p>
+
 ### RSA Encryption/Decryption
 Input:
 ```
@@ -91,6 +97,12 @@ Encrypted Output:
 ```
 Base64 encoded string
 ```
+
+<p align="center">
+  <img src="example2-image.png" alt="Example 2: RSA Encryption/Decryption" width="500">
+  <br>
+  <em>Example 2: RSA Encryption/Decryption</em>
+</p>
 
 ### Error Handling Examples
 The application handles various error scenarios:
