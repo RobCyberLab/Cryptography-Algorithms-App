@@ -76,11 +76,6 @@ Input:
 Hello World
 ```
 
-Encrypted Output (format):
-```
-<salt-hex>:<iv-hex>:<encrypted-hex>
-```
-
 <p align="center">
   <img src="example1-image.png" alt="Example 1: AES Encryption/Decryption" width="500">
   <br>
@@ -91,11 +86,6 @@ Encrypted Output (format):
 Input:
 ```
 Hello World
-```
-
-Encrypted Output:
-```
-Base64 encoded string
 ```
 
 <p align="center">
