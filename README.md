@@ -1,8 +1,8 @@
-# 🔒 Cryptography Algorithms App
+# 🔒 Text Encryption/Decryption App
 
 ## Table of Contents 📑
 1. [Introduction](#introduction-)
-2. [Features](#features-)
+2. [Current Features](#current-features-)
 3. [Technologies Used](#technologies-used-)
 4. [Security Measures](#security-measures-)
 5. [Installation](#installation-)
@@ -10,76 +10,62 @@
 7. [Future Enhancements](#future-enhancements-)
 
 ## Introduction 📘
-A web application providing encryption and decryption capabilities using AES and RSA algorithms. The app offers a simple user interface for text encryption while maintaining essential security practices.
+A web application that provides text encryption and decryption capabilities using AES and RSA algorithms. The app features a simple user interface for text encryption and decryption operations.
 
-## Features 🌟
-### Core Functionality ⚡
-- Symmetric encryption using AES
-- Asymmetric encryption using RSA
-- Web interface for encryption/decryption operations
-- Real-time error feedback
-- Responsive design
-
-### Implementation Details 🔧
-#### AES Encryption
-```javascript
-// Generate random IV and salt
-const iv = crypto.randomBytes(16);
-const salt = crypto.randomBytes(16);
-
-// Derive key using PBKDF2
-const key = await crypto.pbkdf2(
-    this.ENCRYPTION_KEY,
-    salt,
-    100000,
-    32,
-    'sha256'
-);
-```
-
-#### RSA Encryption
-```javascript
-// Initialize RSA with 2048-bit key size
-this.rsaKey = new NodeRSA({ b: 2048 });
-
-// Encrypt using PKCS1-OAEP padding
-const encrypted = this.rsaKey.encrypt(text, 'base64', 'utf8', {
-    encryptionScheme: 'pkcs1-oaep'
-});
-```
+## Current Features ⚡
+### Implemented Functionality
+- Text encryption and decryption using AES-256-CBC
+  - Includes salt and IV generation
+  - Uses PBKDF2 for key derivation
+- Text encryption and decryption using RSA (2048-bit)
+- Simple web interface with:
+  - Separate encryption and decryption forms
+  - Method selection (AES/RSA)
+  - Real-time error display
+  - Responsive design
+- Basic error handling and validation
 
 ## Technologies Used 💻
-### Frontend 🎨
-- HTML5
-- CSS3
-- JavaScript
+### Currently Implemented
 
-### Backend ⚙️
+Frontend:
+- HTML5
+- CSS3 with custom properties
+- Vanilla JavaScript
+  - Async/await for API calls
+  - Form handling
+  - Error display
+
+Backend:
 - Node.js
 - Express.js
-- Native crypto module
+- crypto (Node.js built-in module)
 - node-rsa package
+- dotenv for environment variables
 
-### Security Packages 🛡️
-- helmet (HTTP security headers)
+Security:
+- helmet (HTTP headers)
 - body-parser (Request parsing)
+- Basic input validation
 
 ## Security Measures 🔐
+Currently implemented:
 - HTTP security headers via Helmet
-- Request body parsing and validation
-- Input validation for encryption parameters
-- Error handling for invalid inputs
+- Basic request body validation
+- Environment variable for encryption key
+- Secure random IV and salt generation for AES
+- Error messages that don't expose system details
 
 ## Installation 🚀
 1. Install dependencies:
 ```bash
-npm install express body-parser helmet
+npm install
 ```
 
-2. Create a 'public' directory and move frontend files:
+2. Create a .env file with required environment variables:
 ```bash
-mkdir public
-mv index.html style.css script.js public/
+ENCRYPTION_KEY=your_32_byte_encryption_key
+PORT=3000
 ```
 
 3. Start the server:
@@ -90,7 +76,9 @@ node app.js
 The application will be available at `http://localhost:3000`
 
 ## API Documentation 📚
-### Encrypt Endpoint 🔒
+### Currently Implemented Endpoints
+
+#### Encrypt Endpoint 🔒
 ```http
 POST /encrypt
 Content-Type: application/json
@@ -99,16 +87,26 @@ Content-Type: application/json
     "text": "Text to encrypt",
     "method": "AES" | "RSA"
 }
+
+Response:
+{
+    "encrypted": "encrypted_text"
+}
 ```
 
-### Decrypt Endpoint 🔓
+#### Decrypt Endpoint 🔓
 ```http
 POST /decrypt
 Content-Type: application/json
 
 {
-    "text": "Encrypted text",
+    "text": "encrypted_text",
     "method": "AES" | "RSA"
+}
+
+Response:
+{
+    "decrypted": "original_text"
 }
 ```
 
@@ -118,30 +116,31 @@ Content-Type: application/json
     "error": "Error message"
 }
 ```
-Status: 400 Bad Request
 
-Common error messages:
-- "Text is required."
-- "Invalid encryption method."
-- "Invalid decryption method."
+Currently handled errors:
+- Missing text input ("Text is required.")
+- Invalid encryption/decryption method
+- Invalid encryption key configuration
+- Invalid encrypted text format
+- RSA encryption/decryption errors
 
-## Future Enhancements 🚀
-### Planned Security Features 🛡️
-- Enhanced input sanitization
-- Key rotation mechanism
-- Digital signatures
-- Advanced key management
-- Rate limiting
-- CORS protection
+## Future Enhancements ⏳
 
-### Planned Functionality 💫
-- File encryption support
-- Batch processing
-- Operation history
-- Mobile-optimized interface
+1. Security Features:
+   - Rate limiting
+   - CORS protection
+   - Key rotation
+   - Digital signatures
+   - Advanced key management
 
-### Infrastructure Goals 🏗️
-- Automated testing suite
-- CI/CD pipeline
-- Monitoring system
-- Performance optimization
+2. Additional Functionality:
+   - File encryption
+   - Batch processing
+   - Operation history
+   - Additional encryption algorithms
+
+3. Infrastructure:
+   - Automated testing
+   - CI/CD pipeline
+   - Monitoring system
+   - Docker containerization
