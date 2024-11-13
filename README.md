@@ -31,27 +31,22 @@ A web application that provides text encryption and decryption capabilities usin
 Frontend:
 - HTML5
 - CSS3 with custom properties
-- Vanilla JavaScript
-  - Async/await for API calls
-  - Form handling
-  - Error display
+- JavaScript
 
 Backend:
 - Node.js
 - Express.js
 - crypto (Node.js built-in module)
 - node-rsa package
-- dotenv for environment variables
 
 Security:
 - helmet (HTTP headers)
 - body-parser (Request parsing)
-- Basic input validation
 
 ## Security Measures 🔐
 Currently implemented:
 - HTTP security headers via Helmet
-- Basic request body validation
+- Request body validation
 - Environment variable for encryption key
 - Secure random IV and salt generation for AES
 - Error messages that don't expose system details
