@@ -56,17 +56,17 @@ The server will start running on the default port (3000) or the port specified i
 ### AES Implementation
 The application uses AES-256-GCM (Galois/Counter Mode) with the following security features:
 
-```javascript
-// Key Security
+#### Key Security
 - 32-byte encryption key
 - Unique salt for each encryption
 - PBKDF2 key derivation (100,000 iterations)
 
-// Encryption Process
+#### Encryption Process
 - Random 16-byte Initialization Vector (IV)
 - GCM authentication tag
 - Base64 encoding for output
 
+```javascript
 // Full encryption result includes:
 {
     "encrypted": "base64_encoded_data",
@@ -79,15 +79,14 @@ The application uses AES-256-GCM (Galois/Counter Mode) with the following securi
 ### RSA Implementation
 Uses RSA encryption with these characteristics:
 
-```javascript
-// Key Generation
+#### Key Generation
 - 2048-bit key size
 - PKCS1-OAEP padding scheme
 
-// Output Format
+#### Output Format
 - Base64 encoded encrypted data
 - Single string output
-```
+
 
 ## Examples 📌
 
