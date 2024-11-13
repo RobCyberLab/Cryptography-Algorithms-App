@@ -44,7 +44,13 @@ The server will start running on port 3000 (default) or your specified port.
 ## Encryption Algorithms 🔐
 
 ### AES Implementation
-The application uses AES-256-CBC with the following features:
+The application uses AES-256-CBC (Advanced Encryption Standard with Cipher Block Chaining), one of the most secure symmetric encryption algorithms available.
+
+#### Algorithm Details
+- **Block Size**: 128 bits (16 bytes)
+- **Key Size**: 256 bits (32 bytes)
+- **Mode**: Cipher Block Chaining (CBC)
+- **Rounds**: 14 transformation rounds
 
 #### Key Security
 - 32-byte encryption key (stored in environment variables)
@@ -54,13 +60,68 @@ The application uses AES-256-CBC with the following features:
   - SHA-256 hash function
   - 32-byte derived key length
 
+#### Core Operations (per round -> 14)
+1. **SubBytes Transformation**
+   - Each byte is replaced using a substitution table (S-box)
+   - Provides non-linearity in the cipher
+   - Helps prevent differential cryptanalysis
+
+2. **ShiftRows Operation**
+   - Bytes in each row are cyclically shifted left
+   - Row 0: No shift
+   - Row 1: Shift 1 position left
+   - Row 2: Shift 2 positions left
+   - Row 3: Shift 3 positions left
+
+3. **MixColumns Transformation**
+   - Each column is multiplied by a fixed polynomial
+   - Provides diffusion in the cipher
+   - Mixes data within columns for better security
+   - It's not maintained for the last round
+
+4. **AddRoundKey**
+   - Round key is XORed with current block
+   - Combines subkey with data block
+   - Different key used in each round
+
 ### RSA Implementation
-Uses RSA encryption with these specifications:
 
 #### Key Features
 - 2048-bit key size
 - Generated on server start
 - Base64 encoded output
+
+#### Mathematical Foundation
+1. **Key Generation**
+   ```plaintext
+   1. Select two prime numbers: p and q
+   2. Calculate n = p × q
+   3. Calculate φ(n) = (p-1) × (q-1)
+   4. Choose e where 1 < e < φ(n) and gcd(e, φ(n)) = 1
+   5. Calculate d where d × e ≡ 1 (mod φ(n))
+   ```
+
+2. **Public Key**
+   - Consists of (n, e)
+   - Typically e = 65537 (2¹⁶ + 1)
+   - n is the modulus (2048 bits)
+
+3. **Private Key**
+   - Consists of (n, d)
+   - d is kept secret
+   - Used for decryption
+
+#### Encryption Process
+```plaintext
+For message M:
+Ciphertext = M^e mod n
+```
+
+#### Decryption Process
+```plaintext
+For ciphertext C:
+Message = C^d mod n
+```
 
 ## Examples 📌
 
