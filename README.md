@@ -23,7 +23,7 @@ A web application that provides text encryption and decryption capabilities usin
   - Method selection (AES/RSA)
   - Real-time error display
   - Responsive design
-- Basic error handling and validation
+- Error handling and validation
 
 ## Technologies Used 💻
 ### Currently Implemented
