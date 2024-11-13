@@ -106,6 +106,13 @@ Output:
 }
 ```
 
+<p align="center">
+  <img src="example1-image.png" alt="Example 1: AES Encryption" width="500">
+  <br>
+  <em>Example 1: AES Encryption</em>
+</p>
+
+
 ### Example 2: AES Decryption
 Input (paste the entire JSON object from encryption):
 ```json
@@ -122,6 +129,12 @@ Output:
 Hello World
 ```
 
+<p align="center">
+  <img src="example2-image.png" alt="Example 2: AES Decryption" width="500">
+  <br>
+  <em>Example 2: AES Decryption</em>
+</p>
+
 ### Example 3: RSA Encryption
 Input:
 ```
@@ -133,6 +146,12 @@ Output:
 MIIBIjANBgkqhkiG9w0BAQEFAAOC...
 ```
 
+<p align="center">
+  <img src="example3-image.png" alt="Example 3: RSA Encryption" width="500">
+  <br>
+  <em>Example 3: RSA Encryption</em>
+</p>
+
 ### Example 4: RSA Decryption
 Input:
 ```
@@ -143,6 +162,12 @@ Output:
 ```
 Secret Message
 ```
+
+<p align="center">
+  <img src="example4-image.png" alt="Example 4: RSA Encryption" width="500">
+  <br>
+  <em>Example 4: RSA Encryption</em>
+</p>
 
 Note: The application includes several security measures:
 - Maximum input length: 10,000 characters
