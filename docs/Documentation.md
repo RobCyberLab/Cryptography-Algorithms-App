@@ -1,11 +1,11 @@
 # Cryptography Algorithms App Documentation
 
 ## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Encryption Algorithms](#encryption-algorithms)
-5. [Examples](#examples)
+1. [Project Overview](#project-overview-)
+2. [Installation](#installation-)
+3. [Usage](#usage-)
+4. [Encryption Algorithms](#encryption-algorithms-)
+5. [Examples](#examples-)
 
 ## Project Overview 📝
 The Cryptography Algorithms App is a web-based application that provides text encryption and decryption capabilities using two industry-standard encryption algorithms: AES (Advanced Encryption Standard) for symmetric encryption and RSA (Rivest-Shamir-Adleman) for asymmetric encryption. The application features a clean, user-friendly interface for secure text processing.
