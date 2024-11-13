@@ -76,11 +76,23 @@ Input:
 Hello World
 ```
 
+Encrypted Output (format):
+```
+
+```
+
 <p align="center">
-  <img src="example1-image.png" alt="Example 1: AES Encryption/Decryption" width="500">
+  <img src="example1-image.png" alt="Example 1: AES Encryption" width="500">
   <br>
-  <em>Example 1: AES Encryption/Decryption</em>
+  <em>Example 1: AES Encryption</em>
 </p>
+
+<p align="center">
+  <img src="example2-image.png" alt="Example 2: AES Decryption" width="500">
+  <br>
+  <em>Example 2: AES Decryption</em>
+</p>
+
 
 ### RSA Encryption/Decryption
 Input:
@@ -88,10 +100,21 @@ Input:
 Hello World
 ```
 
+Encrypted Output:
+```
+
+```
+
 <p align="center">
-  <img src="example2-image.png" alt="Example 2: RSA Encryption/Decryption" width="500">
+  <img src="example3-image.png" alt="Example 3: RSA Encryption" width="500">
   <br>
-  <em>Example 2: RSA Encryption/Decryption</em>
+  <em>Example 3: RSA Encryption</em>
+</p>
+
+<p align="center">
+  <img src="example4-image.png" alt="Example 4: RSA Decryption" width="500">
+  <br>
+  <em>Example 4: RSA Decryption</em>
 </p>
 
 ### Error Handling Examples
