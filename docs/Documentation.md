@@ -72,7 +72,6 @@ Hello World
 
 Encrypted Output (format):
 ```
-
 a5a870f83f41c76b172d29484816bdf8:8fbcf9a5ae55e236d222f6c2877ad7c8:caec2245c5bd4077d722ff656ee6bf09
 ```
 
