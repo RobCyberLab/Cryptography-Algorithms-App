@@ -60,15 +60,6 @@ The application uses AES-256-CBC with the following features:
   - SHA-256 hash function
   - 32-byte derived key length
 
-#### Encryption Process
-```javascript
-// Format of encrypted output:
-saltHex:ivHex:encryptedText
-
-// Example:
-"a1b2c3....:d4e5f6....:g7h8i9...."
-```
-
 ### RSA Implementation
 Uses RSA encryption with these specifications:
 
