@@ -18,13 +18,7 @@ To install and run the Cryptography Algorithms App, follow these steps:
 npm install
 ```
 
-2. Create a `.env` file in the project root with the following variables:
-```bash
-ENCRYPTION_KEY=your_32_byte_encryption_key
-PORT=3000
-```
-
-3. Launch the application:
+2. Launch the application:
 ```bash
 node app.js
 ```
@@ -79,6 +73,7 @@ Hello World
 Encrypted Output (format):
 ```
 
+a5a870f83f41c76b172d29484816bdf8:8fbcf9a5ae55e236d222f6c2877ad7c8: caec2245c5bd4077d722ff656ee6bf09
 ```
 
 <p align="center">
@@ -102,7 +97,7 @@ Hello World
 
 Encrypted Output:
 ```
-
+P0nbRS0XhFnce6dPjzpLYDTmoggFigp5381xBzQOFgfcVziLx2lz5q345uyYCXZj2gjnhtryOlR0pr3jO2AbublAo5YqlJ1kW/MzJICVDLpy44YIzMkFSUc8HdL36xJ9VhDxKrFltpxReh3RjUGs7dHlmm0fzCSyIXAKCVImXNmcxFvJfuiZNbO2JHWMNAVCvIuVIQ0mDk4NYlOHUjhvroJwvABUzXyO5aoKSXHOmOl22gouA+tRjnWKygYStD/wV3uUiqmoAsCDNal7f7yMgWFR8Fz4iY0QraPzRue8blV1lmZzqhuquXdqwmnjSnZH3Y5pq4FCZxS3oYYyGImaYg==
 ```
 
 <p align="center">
