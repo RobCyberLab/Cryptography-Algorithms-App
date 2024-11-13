@@ -98,6 +98,8 @@ PORT=3000
 ```bash
 node app.js
 ```
+After starting the server, open `http://localhost:3000` in your browser to access the encryption interface.
+
 
 ## API Documentation 📚
 
