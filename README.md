@@ -1,4 +1,4 @@
-# 🔒 Text Encryption/Decryption App
+# 🛡️Cryptography Algorithms App🔑
 
 ## Table of Contents 📑
 1. [Introduction](#introduction-)
